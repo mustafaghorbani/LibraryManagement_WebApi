@@ -1,27 +1,50 @@
 ﻿using LibraryManagement.Infrastructure.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Domain.Domain
 {
-    public class BookTransaction : BaseEntity<int, string>
+    public class BookTransaction : BaseEntity<Guid, string>
     {
-        public int Id { get; set; }
 
-        //FK
+        public BookTransaction()
+        {
+            Id = Guid.NewGuid();
+            CreatedDate = DateTime.Now;
+        }
+        /// <summary>
+        /// Gets or sets the Id
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ISBN
+        /// FK
+        /// </summary>
         public string ISBN { get; set; }
+
+        /// <summary>
+        /// Gets or sets the MemberId
+        /// FK
+        /// </summary>
         public int MemberId { get; set; }
 
-
+        /// <summary>
+        /// Gets or sets the DueTo
+        /// </summary>
         public DateTime DueTo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ReturnDate
+        /// </summary>
         public DateTime? ReturnDate { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Book
+        /// </summary>
         public virtual Book Book { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Member
+        /// </summary>
         public virtual Member Member { get; set; }
-
-
     }
 }

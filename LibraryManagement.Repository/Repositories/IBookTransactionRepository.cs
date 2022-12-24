@@ -1,11 +1,6 @@
 ﻿using LibraryManagement.Domain.Domain;
 using LibraryManagement.Infrastructure.Repository;
 using LibraryManagement.Repository.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository.Repositories
 {
@@ -13,7 +8,6 @@ namespace LibraryManagement.Repository.Repositories
     {
         Task<List<DailyReportDto>> GetDailyReport();
 
-        Task<bool> SetBookReturned(string isbn, int memberId);
+        Task SetBookReturned(string isbn, int memberId);
     }
-
 }

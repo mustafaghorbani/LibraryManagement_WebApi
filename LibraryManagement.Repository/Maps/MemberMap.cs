@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
 using LibraryManagement.Domain.Domain;
 using LibraryManagement.Repository.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository.Maps
 {
-    public class MemberMap:Profile
+    public class MemberMap : Profile
     {
         public MemberMap()
         {
@@ -21,8 +16,6 @@ namespace LibraryManagement.Repository.Maps
 
             CreateMap<MemberDto, Member>().ForMember(dest => dest.MemberId, opt => opt.MapFrom(src => src.MemberId));
             CreateMap<Member, MemberDto>().ForMember(dest => dest.MemberId, opt => opt.MapFrom(src => src.MemberId));
-
-
         }
     }
 }

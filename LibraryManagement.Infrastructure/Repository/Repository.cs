@@ -1,11 +1,10 @@
-﻿using LibraryManagement.Infrastructure.DbContext;
-using LibraryManagement.Infrastructure.Entity;
+﻿using LibraryManagement.Infrastructure.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace LibraryManagement.Infrastructure.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity<int, string>, new()
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity<Guid, string>
     {
         private readonly Microsoft.EntityFrameworkCore.DbContext _context;
 
@@ -19,7 +18,7 @@ namespace LibraryManagement.Infrastructure.Repository
             return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> GetById(int id)
+        public async Task<TEntity> GetById(Guid id)
         {
             return await _context.Set<TEntity>()
                             .AsNoTracking()

@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
 using LibraryManagement.Domain.Domain;
 using LibraryManagement.Repository.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository.Maps
 {
-    public class bookTransactionMap: Profile
+    public class bookTransactionMap : Profile
     {
         public bookTransactionMap()
         {
@@ -33,7 +28,6 @@ namespace LibraryManagement.Repository.Maps
 
             CreateMap<BookTransactionsDto, BookTransaction>().ForMember(dest => dest.DueTo, opt => opt.MapFrom(src => src.DueTo));
             CreateMap<BookTransaction, BookTransactionsDto>().ForMember(dest => dest.DueTo, opt => opt.MapFrom(src => src.DueTo));
-
         }
     }
 }

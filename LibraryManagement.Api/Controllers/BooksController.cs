@@ -1,10 +1,8 @@
-﻿using LibraryManagement.Domain.Domain;
-using LibraryManagement.Repository.Queries;
-using LibraryManagement.Repository.Commands;
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using LibraryManagement.Repository.Commands;
 using LibraryManagement.Repository.Dto;
+using LibraryManagement.Repository.Queries;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.Api.Controllers
 {
@@ -16,7 +14,7 @@ namespace LibraryManagement.Api.Controllers
 
         public BooksController(IMediator mediator)
         {
-            this._mediator=mediator;
+            this._mediator = mediator;
         }
 
         [Route("GetAllBooks")]
@@ -28,7 +26,7 @@ namespace LibraryManagement.Api.Controllers
 
         [Route("GetById/{id}")]
         [HttpGet]
-        public async Task<BookDto> GetByIdAsync(int id)
+        public async Task<BookDto> GetByIdAsync(Guid id)
         {
             return await _mediator.Send(new GetBookByIdQuery(id));
         }
@@ -37,12 +35,12 @@ namespace LibraryManagement.Api.Controllers
         [HttpPost]
         public async Task CreateAsync([FromBody] CreateBookCommand model)
         {
-             await _mediator.Send(model);
+            await _mediator.Send(model);
         }
 
         [Route("SearchBook")]
         [HttpPost]
-        public async Task<List<BookDto>> SearchBookAsync([FromBody]SearchBookQuery query)
+        public async Task<List<BookDto>> SearchBookAsync([FromBody] SearchBookQuery query)
         {
             return await _mediator.Send(new SearchBookQuery(query.title, query.author, query.isbn));
         }

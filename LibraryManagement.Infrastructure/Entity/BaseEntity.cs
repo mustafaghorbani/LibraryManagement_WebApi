@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibraryManagement.Infrastructure.Entity
+﻿namespace LibraryManagement.Infrastructure.Entity
 {
     public class BaseEntity<TId, TUserId> : IEntity<TId, TUserId>
     {

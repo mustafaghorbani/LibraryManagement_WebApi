@@ -1,16 +1,11 @@
 ﻿using LibraryManagement.Infrastructure.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Infrastructure.Repository
 {
-    public interface IRepository<TEntity> where TEntity : class, IEntity<int, string>, new()
+    public interface IRepository<TEntity> where TEntity : class, IEntity<Guid, string>
     {
-        Task<TEntity> GetById(int id);
+        Task<TEntity> GetById(Guid id);
         Task<IEnumerable<TEntity>> GetAll();
 
         Task<TEntity> Find(Expression<Func<TEntity, bool>> predicate);

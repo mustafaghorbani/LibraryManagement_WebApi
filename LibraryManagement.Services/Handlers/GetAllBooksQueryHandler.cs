@@ -1,15 +1,7 @@
-﻿using LibraryManagement.Domain.Domain;
-using LibraryManagement.Repository;
-using LibraryManagement.Repository.Repositories;
+﻿using AutoMapper;
 using LibraryManagement.Repository.Dto;
 using LibraryManagement.Repository.Queries;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 
 namespace LibraryManagement.Repository.Handlers
 {
@@ -18,7 +10,7 @@ namespace LibraryManagement.Repository.Handlers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetAllBooksQueryHandler(IUnitOfWork unitOfWork,IMapper mapper)
+        public GetAllBooksQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this._unitOfWork = unitOfWork;
             this._mapper = mapper;

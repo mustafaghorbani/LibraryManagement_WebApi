@@ -1,9 +1,7 @@
-﻿using LibraryManagement.Domain.Domain;
-using LibraryManagement.Repository.Commands;
+﻿using LibraryManagement.Repository.Commands;
 using LibraryManagement.Repository.Dto;
 using LibraryManagement.Repository.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.Api.Controllers
@@ -30,7 +28,7 @@ namespace LibraryManagement.Api.Controllers
         [HttpPost]
         public async Task CreateAsync(CreateMemberCommand command)
         {
-             await _mediator.Send(new CreateMemberCommand(command.memberName));
+            await _mediator.Send(new CreateMemberCommand(command.memberName));
         }
     }
 }

@@ -1,15 +1,7 @@
 ﻿using LibraryManagement.Domain.Domain;
-using LibraryManagement.Infrastructure.Entity;
 using LibraryManagement.Infrastructure.Helpers;
 using LibraryManagement.Infrastructure.Repository;
 using LibraryManagement.Repository.Dto;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Formats.Asn1;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository.Repositories
 {
@@ -22,6 +14,10 @@ namespace LibraryManagement.Repository.Repositories
             this._context = context;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<DailyReportDto>> GetDailyReport()
         {
             //Daily report will be used by Librarian to follow upcoming or late due dates of books.
@@ -43,18 +39,18 @@ namespace LibraryManagement.Repository.Repositories
             return query.ToList();
         }
 
-
-        public async Task<bool> SetBookReturned(string isbn, int memberId)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <param name="memberId"></param>
+        /// <returns></returns>
+        public async Task SetBookReturned(string isbn, int memberId)
         {
             var bookTransaction = _context.BookTransactions.Where(x => x.ISBN == isbn && x.MemberId == memberId && x.ReturnDate == null).FirstOrDefault();
             bookTransaction.ReturnDate = DateTime.Now;
-            bookTransaction.Book.IsAvailable = true;
-            //_ context.(bookTransaction);
-            // await context.SaveChangesAsync();
-
-            return true;
+            _context.Update(bookTransaction);
+            await _context.SaveChangesAsync();
         }
-
-
     }
 }

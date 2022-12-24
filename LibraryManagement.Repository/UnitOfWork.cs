@@ -1,11 +1,6 @@
 ﻿using LibraryManagement.Domain.Domain;
 using LibraryManagement.Infrastructure.Repository;
 using LibraryManagement.Repository.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository
 {
@@ -17,8 +12,8 @@ namespace LibraryManagement.Repository
         {
             this._context = context;
             BookRepository = new BookRepository(this._context);
-            MemberRepository= new MemberRepository(this._context);
-            BookTransactionRepository= new BookTransactionRepository(this._context);    
+            MemberRepository = new MemberRepository(this._context);
+            BookTransactionRepository = new BookTransactionRepository(this._context);
         }
 
         public IBookRepository BookRepository { get; private set; }

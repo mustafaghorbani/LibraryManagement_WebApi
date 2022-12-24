@@ -1,11 +1,6 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository.Commands
 {
-    public record DeleteMemberCommand(int id) : IRequest<int>;
+    public record DeleteMemberCommand(Guid id) : IRequest<Guid>;
 }

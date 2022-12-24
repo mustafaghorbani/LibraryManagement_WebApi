@@ -2,11 +2,6 @@
 using LibraryManagement.Repository.Dto;
 using LibraryManagement.Repository.Queries;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository.Handlers
 {
@@ -14,16 +9,16 @@ namespace LibraryManagement.Repository.Handlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public GetBookByIdQueryHandler(IUnitOfWork unitOfWork,IMapper mapper)
+        public GetBookByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this._unitOfWork = unitOfWork;
-            this._mapper=mapper;
+            this._mapper = mapper;
 
         }
         public async Task<BookDto> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
         {
-            var book= await _unitOfWork.BookRepository.GetById(request.id);
-            return _mapper.Map<BookDto>(book);  
+            var book = await _unitOfWork.BookRepository.GetById(request.id);
+            return _mapper.Map<BookDto>(book);
         }
     }
 }

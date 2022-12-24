@@ -1,17 +1,10 @@
-﻿using LibraryManagement.Infrastructure.DbContext;
-using LibraryManagement.Infrastructure.Engine;
-using LibraryManagement.Infrastructure.Entity;
+﻿using LibraryManagement.Infrastructure.Engine;
 using LibraryManagement.Infrastructure.Repository;
 using LibraryManagement.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository.Engine
 {

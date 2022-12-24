@@ -1,11 +1,5 @@
-﻿using LibraryManagement.Repository;
-using LibraryManagement.Repository.Commands;
+﻿using LibraryManagement.Repository.Commands;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Repository.Handlers
 {
@@ -20,7 +14,7 @@ namespace LibraryManagement.Repository.Handlers
 
         Task<Unit> IRequestHandler<CreateBookCommand, Unit>.Handle(CreateBookCommand request, CancellationToken cancellationToken)
         {
-            _unitOfWork.BookRepository.Add(new Domain.Domain.Book() { Title = request.title, ISBN = request.isbn, Author = request.author, IsActive = true, IsAvailable = true });
+            _unitOfWork.BookRepository.Add(new Domain.Domain.Book() { Title = request.title, ISBN = request.isbn, Author = request.author, Description = request.desicription });
             return Task.FromResult(Unit.Value);
         }
     }

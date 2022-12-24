@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(typeof(LibreryManagementMediatrEntryPoint).Assembly);
 
 CommonHelper.GetAllInstancesOf<IConfigurationRegister>()?.OrderBy(x => x.Order).ToList()
-                .ForEach(x => x.Configure(builder.Services, builder.Configuration)); 
+                .ForEach(x => x.Configure(builder.Services, builder.Configuration));
 
 var app = builder.Build();
 

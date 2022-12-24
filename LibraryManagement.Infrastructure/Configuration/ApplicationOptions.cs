@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LibraryManagement.Infrastructure.Configuration
+﻿namespace LibraryManagement.Infrastructure.Configuration
 {
     /// <summary>
     /// Defines the <see cref="ApplicationOptions" />.
