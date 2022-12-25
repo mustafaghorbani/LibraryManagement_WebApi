@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManagement.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221224114905_init-migration")]
+    [Migration("20221225090501_init-migration")]
     partial class initmigration
     {
         /// <inheritdoc />
@@ -42,8 +42,8 @@ namespace LibraryManagement.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ISBN")
                         .IsRequired()
@@ -76,10 +76,10 @@ namespace LibraryManagement.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6de3d52b-fd3f-4d76-9adb-1cbc8a66d8af"),
+                            Id = new Guid("ff079dc8-8790-49e7-b99a-257132fe4a78"),
                             Author = "Rob Delaney",
                             CreatedBy = "Mustafa",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5822),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1521),
                             Description = "",
                             ISBN = "978-0-393-04002-9",
                             IsActive = true,
@@ -88,10 +88,10 @@ namespace LibraryManagement.Repository.Migrations
                         },
                         new
                         {
-                            Id = new Guid("60e81967-cf9c-4307-91b9-9d2133abda76"),
+                            Id = new Guid("b432d3cf-270c-4560-9e40-eb44c466532e"),
                             Author = "Abdulrazak Gurnah",
                             CreatedBy = "Mustafa",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5860),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1560),
                             Description = "",
                             ISBN = "978-0-393-04012-9 ",
                             IsActive = true,
@@ -100,10 +100,10 @@ namespace LibraryManagement.Repository.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8e92d8e4-3d03-4109-9edb-c470c6f5cb1a"),
+                            Id = new Guid("2bcd531c-e476-47e5-8f3f-252e2c5dc6e9"),
                             Author = "Maud Newton",
                             CreatedBy = "Mustafa",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5873),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1564),
                             Description = "",
                             ISBN = "978-0-393-04022-9",
                             IsActive = true,
@@ -112,10 +112,10 @@ namespace LibraryManagement.Repository.Migrations
                         },
                         new
                         {
-                            Id = new Guid("158bd420-7e23-4123-afcb-b75e789ff869"),
+                            Id = new Guid("b4d58bf1-3279-4a8f-a846-c59be50465d3"),
                             Author = "Nuar Alsadir",
                             CreatedBy = "Mustafa",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5883),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1581),
                             Description = "",
                             ISBN = "978-0-393-04032-9",
                             IsActive = true,
@@ -124,10 +124,10 @@ namespace LibraryManagement.Repository.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e9ae8c4b-8b5f-4246-8eca-1db8a7c4068f"),
+                            Id = new Guid("1696897e-6865-41d0-bb06-b4e4c0a5bc55"),
                             Author = "R.F. Kuang",
                             CreatedBy = "Mustafa",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5886),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1585),
                             Description = "",
                             ISBN = "978-0-393-04052-9",
                             IsActive = true,
@@ -138,11 +138,9 @@ namespace LibraryManagement.Repository.Migrations
 
             modelBuilder.Entity("LibraryManagement.Domain.Domain.BookTransaction", b =>
                 {
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -153,11 +151,15 @@ namespace LibraryManagement.Repository.Migrations
                     b.Property<DateTime>("DueTo")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
@@ -168,39 +170,41 @@ namespace LibraryManagement.Repository.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("MemberId", "ISBN");
+                    b.HasKey("Id");
 
                     b.HasIndex("ISBN");
+
+                    b.HasIndex("MemberId");
 
                     b.ToTable("BookTransaction", (string)null);
 
                     b.HasData(
                         new
                         {
-                            MemberId = 42323190,
+                            Id = new Guid("e05f7702-d511-44ac-b87c-e57433f1b2ff"),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1679),
+                            DueTo = new DateTime(2023, 2, 6, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1682),
                             ISBN = "978-0-393-04002-9",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5974),
-                            DueTo = new DateTime(2023, 2, 6, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5977),
-                            Id = new Guid("a31302d4-cc44-4775-919e-9d3aa389629b"),
-                            IsActive = false
+                            IsActive = false,
+                            MemberId = 30942370
                         },
                         new
                         {
-                            MemberId = 29182029,
+                            Id = new Guid("35d551d1-145a-4db2-89be-c4ce7d3d3bc7"),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1697),
+                            DueTo = new DateTime(2023, 2, 6, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1699),
                             ISBN = "978-0-393-04022-9",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5993),
-                            DueTo = new DateTime(2023, 2, 6, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5996),
-                            Id = new Guid("c505c6e1-c0cb-4692-a463-5395618324f8"),
-                            IsActive = false
+                            IsActive = false,
+                            MemberId = 98716652
                         },
                         new
                         {
-                            MemberId = 26598171,
+                            Id = new Guid("45ac38af-b8fa-4a59-a11f-bfc796e583dc"),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1703),
+                            DueTo = new DateTime(2023, 2, 6, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1705),
                             ISBN = "978-0-393-04052-9",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(6001),
-                            DueTo = new DateTime(2023, 2, 6, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(6003),
-                            Id = new Guid("fae5dd3d-6cb3-4bd3-9f5b-d3607dfc4561"),
-                            IsActive = false
+                            IsActive = false,
+                            MemberId = 61655157
                         });
                 });
 
@@ -243,29 +247,29 @@ namespace LibraryManagement.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8b2811b2-c80f-497d-b1cc-1b223cd506f8"),
+                            Id = new Guid("1384efb8-cc28-494c-a869-6f7739dbc135"),
                             CreatedBy = "Mustafa",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5923),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1625),
                             IsActive = true,
-                            MemberId = 42323190,
+                            MemberId = 30942370,
                             MemberName = "Ali Koc"
                         },
                         new
                         {
-                            Id = new Guid("821ef394-d003-4964-a16c-4c93d782b9d5"),
+                            Id = new Guid("f8f63b53-4306-4cba-be67-a0a6dcd2de8c"),
                             CreatedBy = "Mustafa",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5948),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1649),
                             IsActive = true,
-                            MemberId = 29182029,
+                            MemberId = 98716652,
                             MemberName = "Sara yilmaz"
                         },
                         new
                         {
-                            Id = new Guid("b192a145-8b90-4148-8ba8-1478dbc8cfaf"),
+                            Id = new Guid("09be3b87-6c38-4397-bf0f-afefc0ebd0b3"),
                             CreatedBy = "Mustafa",
-                            CreatedDate = new DateTime(2022, 12, 24, 15, 19, 5, 323, DateTimeKind.Local).AddTicks(5968),
+                            CreatedDate = new DateTime(2022, 12, 25, 12, 35, 0, 952, DateTimeKind.Local).AddTicks(1673),
                             IsActive = true,
-                            MemberId = 26598171,
+                            MemberId = 61655157,
                             MemberName = "Yizlam Goney"
                         });
                 });

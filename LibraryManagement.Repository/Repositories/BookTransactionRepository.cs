@@ -33,6 +33,7 @@ namespace LibraryManagement.Repository.Repositories
                             MemberId = BT.MemberId,
                             MemberName = M.MemberName,
                             TransactionId = BT.Id,
+                            DueDate = BT.DueTo,
                             Penalty = CommonHelper.CalculatePenalty(Convert.ToInt32((DateTime.Now - BT.DueTo).TotalDays), 0.20),
                         };
 

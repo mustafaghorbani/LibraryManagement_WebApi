@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Infrastructure.Entity;
+using LibraryManagement.Infrastructure.Helpers;
 
 namespace LibraryManagement.Domain.Domain
 {
@@ -9,6 +10,7 @@ namespace LibraryManagement.Domain.Domain
         {
             Id = Guid.NewGuid();
             CreatedDate = DateTime.Now;
+            DueTo = CommonHelper.AddBusinessDays(DateTime.Now, 30);
         }
         /// <summary>
         /// Gets or sets the Id

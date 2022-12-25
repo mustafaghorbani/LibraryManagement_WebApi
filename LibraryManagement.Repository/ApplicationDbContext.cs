@@ -34,7 +34,7 @@ namespace LibraryManagement.Repository
 
 
             modelBuilder.Entity<BookTransaction>().ToTable("BookTransaction");
-            modelBuilder.Entity<BookTransaction>().HasKey(x => new { x.MemberId, x.ISBN });
+            modelBuilder.Entity<BookTransaction>().HasKey(x => x.Id);
             modelBuilder.Entity<BookTransaction>().HasOne(x => x.Book).WithMany(x => x.BookTransactions).HasForeignKey(x => x.ISBN).HasPrincipalKey(x => x.ISBN);
             modelBuilder.Entity<BookTransaction>().HasOne(x => x.Member).WithMany(x => x.BookTransactions).HasForeignKey(x => x.MemberId).HasPrincipalKey(x => x.MemberId);
 
@@ -60,7 +60,7 @@ namespace LibraryManagement.Repository
             {
                 new Member(){Id = Guid.NewGuid(),MemberName="Ali Koc",CreatedBy="Mustafa",IsActive=true},
                 new Member(){Id = Guid.NewGuid(),MemberName="Sara yilmaz",CreatedBy="Mustafa",IsActive=true},
-                new Member(){Id = Guid.NewGuid(),MemberName="Yizlam Goney",CreatedBy="Mustafa",IsActive=true},
+                new Member(){Id = Guid.NewGuid(),MemberName="Yilmaz Goney",CreatedBy="Mustafa",IsActive=true},
             };
 
             var sampleBookTransactions = new List<BookTransaction>()
