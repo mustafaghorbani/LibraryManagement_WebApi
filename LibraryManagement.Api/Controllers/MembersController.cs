@@ -24,7 +24,7 @@ namespace LibraryManagement.Api.Controllers
             return await _mediator.Send(new GetMembersQuery());
         }
 
-        [Route("CreateMember")]
+        [Route("Create")]
         [HttpPost]
         public async Task CreateAsync(CreateMemberCommand command)
         {

@@ -40,37 +40,31 @@ namespace LibraryManagement.Infrastructure.Repository
         void IRepository<TEntity>.Add(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
-            _context.SaveChanges();
         }
 
         void IRepository<TEntity>.Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
-            _context.SaveChanges();
         }
 
         public void Delete(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
-            _context.SaveChanges();
         }
 
         void IRepository<TEntity>.AddRange(IEnumerable<TEntity> entities)
         {
             _context.Set<TEntity>().AddRange(entities);
-            _context.SaveChanges();
         }
 
         void IRepository<TEntity>.UpdateRange(IEnumerable<TEntity> entities)
         {
             _context.Set<TEntity>().UpdateRange(entities);
-            _context.SaveChanges();
         }
 
         public void DeleteRange(IEnumerable<TEntity> entities)
         {
             _context.Set<TEntity>().RemoveRange(entities);
-            _context.SaveChanges();
         }
     }
 }

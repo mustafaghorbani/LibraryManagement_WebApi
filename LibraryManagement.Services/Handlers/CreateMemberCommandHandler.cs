@@ -11,11 +11,13 @@ namespace LibraryManagement.Repository.Handlers
         {
             this._unitOfWork = unitOfWork;
         }
-        Task<Unit> IRequestHandler<CreateMemberCommand, Unit>.Handle(CreateMemberCommand request, CancellationToken cancellationToken)
-        {
 
+        public async Task<Unit> Handle(CreateMemberCommand request, CancellationToken cancellationToken)
+        {
             _unitOfWork.MemberRepository.Add(new Domain.Domain.Member() { MemberName = request.memberName });
-            return Task.FromResult(Unit.Value);
+            await _unitOfWork.CommitAsync();
+
+            return Unit.Value;
         }
     }
 }

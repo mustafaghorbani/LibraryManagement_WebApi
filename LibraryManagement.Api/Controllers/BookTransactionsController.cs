@@ -17,7 +17,7 @@ namespace LibraryManagement.Api.Controllers
             this._mediator = mediator;
         }
 
-        [Route("BorrowBook")]
+        [Route("Borrow")]
         [HttpPost]
         public async Task BorrowBookAsync(CreateBookTransactionCommand command)
         {

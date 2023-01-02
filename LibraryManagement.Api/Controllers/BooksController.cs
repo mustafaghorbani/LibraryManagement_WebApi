@@ -17,7 +17,7 @@ namespace LibraryManagement.Api.Controllers
             this._mediator = mediator;
         }
 
-        [Route("GetAllBooks")]
+        [Route("GetAll")]
         [HttpGet]
         public async Task<List<BookDto>> GetAllBooksAsync()
         {
@@ -31,14 +31,14 @@ namespace LibraryManagement.Api.Controllers
             return await _mediator.Send(new GetBookByIdQuery(id));
         }
 
-        [Route("CreateBook")]
+        [Route("Create")]
         [HttpPost]
         public async Task CreateAsync([FromBody] CreateBookCommand model)
         {
             await _mediator.Send(model);
         }
 
-        [Route("SearchBook")]
+        [Route("Search")]
         [HttpPost]
         public async Task<List<BookDto>> SearchBookAsync([FromBody] SearchBookQuery query)
         {

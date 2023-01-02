@@ -15,6 +15,7 @@ namespace LibraryManagement.Repository.Handlers
         Task<Unit> IRequestHandler<SetBookReturnedCommand, Unit>.Handle(SetBookReturnedCommand request, CancellationToken cancellationToken)
         {
             _unitOfWork.BookTransactionRepository.SetBookReturned(request.isbn, request.memberId);
+            _unitOfWork.CommitAsync();
             return Task.FromResult(Unit.Value);
         }
     }

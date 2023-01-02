@@ -22,7 +22,9 @@ namespace LibraryManagement.Repository
 
         public IBookTransactionRepository BookTransactionRepository { get; private set; }
 
-        public async Task<bool> Save() => await _context.SaveChangesAsync() > 0;
+        public void Commit() => _context.SaveChanges();
+
+        public async Task CommitAsync() => await _context.SaveChangesAsync();
 
         public void Dispose()
         {

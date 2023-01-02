@@ -15,6 +15,7 @@ namespace LibraryManagement.Repository.Handlers
         Task<Unit> IRequestHandler<CreateBookCommand, Unit>.Handle(CreateBookCommand request, CancellationToken cancellationToken)
         {
             _unitOfWork.BookRepository.Add(new Domain.Domain.Book() { Title = request.title, ISBN = request.isbn, Author = request.author, Description = request.desicription });
+            _unitOfWork.CommitAsync();
             return Task.FromResult(Unit.Value);
         }
     }

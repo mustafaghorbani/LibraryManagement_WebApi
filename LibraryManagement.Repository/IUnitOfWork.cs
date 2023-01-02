@@ -10,6 +10,7 @@ namespace LibraryManagement.Repository
         IRepository<Member> MemberRepository { get; }
         IBookTransactionRepository BookTransactionRepository { get; }
 
-        Task<bool> Save();
+        void Commit();
+        Task CommitAsync();
     }
 }
